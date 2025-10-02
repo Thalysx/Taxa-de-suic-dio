@@ -1,0 +1,30 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Criando dados fictícios diretamente no código
+dados = {
+    "Year": [2017, 2018, 2019, 2020] * 2,
+    "Sex": ["Female"] * 4 + ["Male"] * 4,
+    "No of Suicides": [3200, 3500, 3700, 3600,   # mulheres
+                       8900, 9100, 9400, 9800]   # homens
+}
+
+# Converte para DataFrame
+df = pd.DataFrame(dados)
+
+# Separa por sexo
+female = df[df["Sex"] == "Female"]
+male = df[df["Sex"] == "Male"]
+
+# Plota o gráfico
+plt.plot(female["Year"], female["No of Suicides"], marker='o', label='Mulheres', color='red')
+plt.plot(male["Year"], male["No of Suicides"], marker='o', label='Homens', color='blue')
+
+plt.title('Número de Suicídios por Ano (2017-2020) - Dados Fictícios')
+plt.xlabel('Ano')
+plt.ylabel('Número de Suicídios')
+plt.legend()
+plt.xticks(female["Year"])
+plt.yticks(range(0, 11000, 1000))
+
+plt.show()
